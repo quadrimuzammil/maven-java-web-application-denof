@@ -19,7 +19,27 @@ Also show cases the 'Simple Logging Framework - slf4j'.</description>
 
 	<properties>
 		<spring.version>4.0.3.RELEASE</spring.version>	
+		<sonar.host.url>http://3.110.188.148:9000/projects</sonar.host.url>
+		<sonar.login>f45812c2a97d9075f337070af5ed305afd15616b</sonar.login>
 	</properties>
+	<repositories>
+	    <repository>
+		<id>nexus</id>
+		<url>http://3.110.160.186:8081/repository/maven-denof-snapshot-repo/</url>
+           </repository>
+	</repositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<url>http://3.110.160.186:8081/repository/maven-denof-release/</url>
+		</repository>
+		
+		<snapshotRepository>
+			<id>nexus</id>
+			<url>http://3.110.160.186:8081/repository/maven-denof-snapshot-repo/</url>
+	       </snapshotRepository>
+       </distributionManagement>
 
 
 	<build>
