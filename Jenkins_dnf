@@ -1,9 +1,27 @@
 node {
+def mavenHome= tool name: "Maven 3.8.6"
 stage ('Clone Codes'){
+git branch: 'Test_Web_App', credentialsId: 'GITHUB_CREDENTIALS', url: 'https://github.com/quadrimuzammil/maven-java-web-application-denof.git'
+}
 
+stage ('Build Codes'){
+sh "${mavenHome}/bin/mvn clean package"
+}
 
+stage ('Execute SonarQube Report'){
+sh "${mavenHome}/bin/mvn sonar:sonar
+}
 
-
+stage ('Upload-Artifact'){
+sh "${mavenHome}/bin/mvn deploy"
+}
+/*
+stage ('Deploy Artifact in Tomcat Server'){
+sshagent(['Deploy_Web_Application']) {
+sh "scp -o StrictHostKeyChecking=no target/          ec2-user@13.232.22.210:/opt/apache-tomcat-9.0.64/webapps/"
+}
+}
+*/
 
 }
 
